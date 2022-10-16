@@ -1,0 +1,57 @@
+<!-- List View EJS Template
+    SEE THE /js/views/partials/example_output.html to see what your output should look like. Your LMS1 output might be slightly different, integrate the concepts into 
+    your current implementation as well as you can.
+
+    Watch the class video to finish this off, but try to do it yourself first!
+    Note that you must learn how to do this as the next assignment you will do it yourself!
+  -->
+<table id='<%=view.list.id%>' class="<%=view.list.tableClasses%>">
+
+  <!-- Output Table Headers -->
+  <tr class="trow">
+
+    <% view.columns.forEach( function(col, key){ %>
+
+
+      <th class="thead sortable <%=view.list.thClasses%>" data-name="<%=col.name%>" id="<%=col.name%>">
+        <%=col.label%>
+          <span id="<%=col.name%>-asc" class="bi-arrow-up" aria-hidden="true" style="display:none"></span>
+          <span id="<%=col.name%>-desc" class="bi-arrow-down" aria-hidden="true" style="display:none"></span>
+      </th>
+      <% }) %>
+
+        <th class="thead <%=view.list.thClasses%>"> Actions </th>
+  </tr>
+  <!-- Output Table data rows
+      This process uses a loop within a loop.  Iterate the 'data' item passed into the view renderer.
+      To output the column TD elements, iterate the 'view.columns' (see view model list 'columns' array) and use the 'name' attribute to get the value from the data item
+
+      Remember to output a 'data-id' attribute into each row so you can retrieve and utilize it later when you click on the delete and edit icons
+      
+    -->
+  <% for (item of data) { %>
+    <tr data-toggle="popover" data-bs-trigger="hover" title="<%=item.name%>" data-bs-content="<ul class='list-group list-group-light'> 
+      <li class='list-group-item'>
+          <img src='<%=item.teamPhoto%>' class='img-thumbnail'/>
+      </li>
+      <li class='list-group-item'>Coach: <%=item.coachName%></li> 
+      <li class='list-group-item'>Contact: <%=item.coachPhone%></li>
+  </ul>" data-bs-html="true">
+      <td>
+        <%=item.name%>
+      </td>
+      <td>
+        <%=item.coachName%>
+      </td>
+      <td>
+        <%=item.coachPhone%>
+      </td>
+      <td><span class=" bi-trash" data-bs-toggle="modal" data-bs-target="#myModal" data-id="<%=item.id%>"
+          data-name="<%=item.name%>"></span>
+        <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+        <span class="bi-pencil-square"></span>
+      </td>
+    </tr>
+
+    <% } %>
+</table>
