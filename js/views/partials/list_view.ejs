@@ -32,25 +32,25 @@
   <% for (item of data) { %>
     <tr data-toggle="popover" data-bs-trigger="hover" title="<%=item.name%>" data-bs-content="<ul class='list-group list-group-light'> 
       <li class='list-group-item'>
-          <img src='<%=item.teamPhoto%>' class='img-thumbnail'/>
+          <img src='<%=item[view.list.logoCol]%>' class='img-thumbnail'/>
       </li>
-      <li class='list-group-item'>Coach: <%=item.coachName%></li> 
-      <li class='list-group-item'>Contact: <%=item.coachPhone%></li>
-  </ul>" data-bs-html="true">
-      <td>
-        <%=item.name%>
-      </td>
-      <td>
-        <%=item.coachName%>
-      </td>
-      <td>
-        <%=item.coachPhone%>
-      </td>
-      <td><span class=" bi-trash" data-bs-toggle="modal" data-bs-target="#myModal" data-id="<%=item.id%>"
-          data-name="<%=item.name%>"></span>
-        <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-        <span class="bi-pencil-square"></span>
-      </td>
+      <% view.columns.forEach( function(col, key){ console.log(col, key) %>
+      <li class='list-group-item'><%=col.label%>: <%=item[col.name]%></li> 
+      <% }) %>
+    </ul>" data-bs-html="true">
+
+      <% view.columns.forEach( function(col, key){ %>
+        <td>
+          <%=item[col.name]%>
+        </td>
+
+        <% }) %>
+
+          <td><span class=" bi-trash" data-bs-toggle="modal" data-bs-target="#myModal" data-id="<%=item.id%>"
+              data-name="<%=item.name%>"></span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <span class="bi-pencil-square"></span>
+          </td>
     </tr>
 
     <% } %>
