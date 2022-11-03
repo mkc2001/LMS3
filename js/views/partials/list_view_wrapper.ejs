@@ -1,0 +1,86 @@
+<main class="">
+  <div class="row">
+    <div class="col-4">
+      <h1 class="text-black">
+        <%=viewModel.listTitle%>
+      </h1>
+    </div>
+    <div class="col-2 d-flex">
+      <button id="createButton" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#formModal">Create</button>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <input id="searchInput" class="w-75 me-2 p-1" placeholder="Search...">
+      <button id="clearSearch" class="btn btn-primary">Clear</button>
+    </div>
+
+  </div>
+  <div class="col-12">
+    <div id="<%=view.alertContainerId%>" class="mt-2 w-50"></div>
+    <div id="tableContainer" class="mt-2">
+
+    </div>
+    <button id="resetView" class="btn btn-primary clear-search-btn ml-2">Reset View</button>
+  </div>
+  </div>
+</main>
+
+<div class="modal" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Item?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        This action cannot be undone!
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <!-- data-bs-dismiss="modal" tells the javscript to hide the modal on click, both 'Yes' and 'No' buttons will hide modal.  I'm placing a specific event handler on the 'Yes' button below-->
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+        <button id="yesButton" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="modal" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+
+
+      <!-- Modal body -->
+      <div class="modal-body" id="formContainer">
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="cancelModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cancel</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to cancel? (Your changes will not be saved)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="cancelNoButton" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" id="cancelYesButton" data-bs-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

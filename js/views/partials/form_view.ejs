@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form id="<%=viewModel.id%>" autocomplete="off" method="<%=viewModel.method%>" action="<%=viewModel.actionUrl%>"
+            novalidate>
+            <div class="modal-header">
+                <h1>
+                    <%=view.currentItemId?viewModel.editFormTitle:viewModel.addFormTitle%>
+                </h1>
+            </div>
+
+
+            <div class="form-row">
+                <%view.viewModel.fields.forEach( function(field){ %>
+                    <div class="col-md-12 mb-3 p-2">
+
+                        <%if(field.attributes.type !='hidden' ){ %>
+                            <label for="<%=field.name%>">
+                                <%=field.label%>
+                            </label>
+                            <%}%>
+
+                                <input name="<%=field.name%>" id="<%=field.name%>-input" value="<%=data[field.name]%>"
+                                    type="<%=field.attributes.type%>" placeholder="Enter <%=field.label%> here"
+                                    class="form-control" <%if(field.validation.required==true){%>
+                                required=""<%}%>
+                                    <%for (const attribute in field.attributes){%>
+                                        <%=attribute%>="<%=field.attributes[attribute]%>"
+                                                <%}%>>
+                                                    <div class="invalid-feedback">
+                                                        <%if(field.validation.required==true){%>
+                                                            <%=field.validation.requiredMessage%>
+                                                                <%}%>
+                                                    </div>
+                    </div>
+                    <%})%>
+            </div>
+            <div class=" form-group row">
+
+                <div class="col-sm-10">
+                    <button id="cancelButton" type="button" class="btn btn-danger">Cancel</button>
+                    <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
